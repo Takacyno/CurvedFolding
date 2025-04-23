@@ -19,10 +19,13 @@
 #define BETWEENALPHA 3
 #define MULTIPLYTABLE1BY 0.1
 #define BORDEREXPANTION 2
-#define TRIAL 100
+#define TRIAL 1
 
-#define STARTNUM 5
-#define GOALNUM  3
+#define  SIZE_OF_BASE 200
+#define  NUMBER_OF_BRACES 21
+
+#define STARTNUM 1
+#define GOALNUM  15
 
 #if STARTNUM == 1
     #if GOALNUM == 2
@@ -52,7 +55,9 @@
     #elif GOALNUM == 14
         #define ALPHANUMBER 10
     #elif GOALNUM == 15
-        #define ALPHANUMBER 7                               
+        #define ALPHANUMBER 7     
+    #elif GOALNUM == 1
+        #define ALPHANUMBER 1                          
     #endif
 #elif STARTNUM == 2
     #if GOALNUM == 1
@@ -83,6 +88,8 @@
         #define ALPHANUMBER 20
     #elif GOALNUM == 15
         #define ALPHANUMBER 17
+    #elif GOALNUM == 2
+        #define ALPHANUMBER 2
     #endif
 #elif STARTNUM == 3
     #if GOALNUM == 1
@@ -113,6 +120,8 @@
         #define ALPHANUMBER 35
     #elif GOALNUM == 15
         #define ALPHANUMBER 32
+    #elif GOALNUM == 3
+        #define ALPHANUMBER 3        
     #endif
 #elif STARTNUM == 4
     #if GOALNUM == 1
@@ -143,6 +152,8 @@
         #define ALPHANUMBER 15
     #elif GOALNUM == 15
         #define ALPHANUMBER 12
+    #elif GOALNUM == 4
+        #define ALPHANUMBER 4        
     #endif
 #elif STARTNUM == 5
     #if GOALNUM == 1
@@ -173,6 +184,8 @@
         #define ALPHANUMBER 20
     #elif GOALNUM == 15
         #define ALPHANUMBER 17
+    #elif GOALNUM == 5
+        #define ALPHANUMBER 5        
     #endif
 #elif STARTNUM == 6
     #if GOALNUM == 1
@@ -203,6 +216,8 @@
         #define ALPHANUMBER 20
     #elif GOALNUM == 15
         #define ALPHANUMBER 17
+    #elif GOALNUM == 6
+        #define ALPHANUMBER 6        
     #endif
 #elif STARTNUM == 7
     #if GOALNUM == 1
@@ -233,6 +248,8 @@
         #define ALPHANUMBER 15
     #elif GOALNUM == 15
         #define ALPHANUMBER 12
+    #elif GOALNUM == 7
+        #define ALPHANUMBER 7        
     #endif
 #elif STARTNUM == 8
     #if GOALNUM == 1
@@ -263,6 +280,8 @@
         #define ALPHANUMBER 15
     #elif GOALNUM == 15
         #define ALPHANUMBER 12
+    #elif GOALNUM == 8
+        #define ALPHANUMBER 8        
     #endif
 #elif STARTNUM == 9
     #if GOALNUM == 1
@@ -293,6 +312,8 @@
         #define ALPHANUMBER 25
     #elif GOALNUM == 15
         #define ALPHANUMBER 22
+    #elif GOALNUM == 9
+        #define ALPHANUMBER 9        
     #endif
 #elif STARTNUM == 10
     #if GOALNUM == 1
@@ -323,6 +344,8 @@
         #define ALPHANUMBER 25
     #elif GOALNUM == 15
         #define ALPHANUMBER 22
+    #elif GOALNUM == 10
+        #define ALPHANUMBER 10        
     #endif
 #elif STARTNUM == 11
     #if GOALNUM == 1
@@ -479,7 +502,8 @@
 
 using namespace std;
 double dxdef=5.0,dx2d[SAMPLENUM],PI=acos(-1);
-double x2d[2][SAMPLENUM]={},t2d[2][SAMPLENUM]={},n2d[2][SAMPLENUM]={},k2dControl[NUM]={0.000000,0.004536,0.005988,0.007399,0.005987,0.004538,0.000000},k2d[SAMPLENUM]={},costPointsWhere2d[9][9][2]={},curveCrossPoints2d[2][3]={},curveTipToEdge[2]={},alphaDisplacement[ALPHANUMBER]={},betaControlDisplacement[RULINGDISPLACEMENTNUMBER][NUM]={{0.1,0.1,0.1,0.1,0.1,0.1,0.1},{-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1},{0,0.0286,0.0571,0.857,0.114,0.143,0.171},{-0,-0.0286,-0.0571,-0.857,-0.114,-0.143,-0.171},{0.2,0.171,0.143,0.114,0.0857,0.0571,0.0286},{-0.2,-0.171,-0.143,-0.114,-0.0857,-0.0571,-0.0286},{0.1,0,0,0,0,0,0},{0,0.1,0,0,0,0,0},{0,0,0.1,0,0,0,0},{0,0,0,0.1,0,0,0},{0,0,0,0,0.1,0,0},{0,0,0,0,0,0.1,0},{0,0,0,0,0,0,0.1},{-0.1,0,0,0,0,0,0},{0,-0.1,0,0,0,0,0},{0,0,-0.1,0,0,0,0},{0,0,0,-0.1,0,0,0},{0,0,0,0,-0.1,0,0},{0,0,0,0,0,-0.1,0},{0,0,0,0,0,0,-0.1},{0,0,0,0,0,0,0}};
+double x2d[2][SAMPLENUM]={},t2d[2][SAMPLENUM]={},n2d[2][SAMPLENUM]={},k2dControl[NUM]={0.000000,0.004536,0.005988,0.007399,0.005987,0.004538,0.000000},k2d[SAMPLENUM]={},costPointsWhere2d[9][9][2]={},curveCrossPoints2d[2][3]={},curveTipToEdge[2]={},alphaDisplacement[ALPHANUMBER]={},
+betaControlDisplacement[RULINGDISPLACEMENTNUMBER][NUM]={{0.1,0.1,0.1,0.1,0.1,0.1,0.1},{-0.1,-0.1,-0.1,-0.1,-0.1,-0.1,-0.1},{0,0.0286,0.0571,0.857,0.114,0.143,0.171},{-0,-0.0286,-0.0571,-0.857,-0.114,-0.143,-0.171},{0.2,0.171,0.143,0.114,0.0857,0.0571,0.0286},{-0.2,-0.171,-0.143,-0.114,-0.0857,-0.0571,-0.0286},{0.1,0,0,0,0,0,0},{0,0.1,0,0,0,0,0},{0,0,0.1,0,0,0,0},{0,0,0,0.1,0,0,0},{0,0,0,0,0.1,0,0},{0,0,0,0,0,0.1,0},{0,0,0,0,0,0,0.1},{-0.1,0,0,0,0,0,0},{0,-0.1,0,0,0,0,0},{0,0,-0.1,0,0,0,0},{0,0,0,-0.1,0,0,0},{0,0,0,0,-0.1,0,0},{0,0,0,0,0,-0.1,0},{0,0,0,0,0,0,-0.1},{0,0,0,0,0,0,0}};
 double betaControls[100][2][NUM]={{{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}},
         {{2.022672,1.991598,1.849320,1.562967,1.298554,1.156659,1.127758},{1.118921,1.149995,1.292273,1.578625,1.843039,1.984934,2.013835}},//1
         {{2.022672,1.991598,1.849320,1.562967,1.298554,1.156659,1.127758},{2.216568,1.884956,2.076942,2.251475,2.408554,2.495821,2.426008}},//2
@@ -637,8 +661,24 @@ int inv_m33(double *m)
 	memcpy(m,mat,sizeof(double)*9);
 	return 0;
 }
+void mult_m44_v4(double *_m44, double *_v4)
+{
+	int i,j;
+	double v0[4], m[4][4], v1[4];
 
-int getMat(int vcnt,double* vx0, double* vy0, double* vz0,double* vx1, double* vy1, double* vz1,double* _mat){
+	memcpy(v1, _v4, sizeof(double)*4);
+	memcpy(m, _m44, sizeof(double)*16);
+	memset(v0, 0, sizeof(double)*4);
+
+	for(i = 0; i < 4; i++){
+		for(j = 0; j < 4; j++){
+			v0[i] += m[i][j] * v1[j];
+		}
+	}
+	memcpy(_v4, v0, sizeof(double)*4);
+}
+
+int getMat(int vcnt,double* vx0, double* vy0, double* vz0,double* vx1, double* vy1, double* vz1,double* _mat,double* _normalVec){
 	int i, cnt, ret = 0;
 	double mat[16], rm[16], tm0[16], tm1[16], eps = 0.0000001;
 	double rmat[3][3];
@@ -646,6 +686,7 @@ int getMat(int vcnt,double* vx0, double* vy0, double* vz0,double* vx1, double* v
 	double w, sw, cw, p, sp, cp, k, ck, sk, F[3];
 	double dfdp[3][3], dfdp_coef[3][3][3];
 	double m[9], b0, b1, b2, dw, dp, dk;
+    double initialNormalVec[4]={0,0,1,1};
 #if 1
 	if (vcnt < 3) {
 		ret = -1;
@@ -776,8 +817,8 @@ int getMat(int vcnt,double* vx0, double* vy0, double* vz0,double* vx1, double* v
     for(int i=0;i<16;i++){
         mat[i]=tm1[i];
     }
-
 	mult_m44_n44(mat, rm, 1);	// dst=1 : n44[16] = n44[16] * m44[16] 
+    mult_m44_v4(rm,initialNormalVec);
 	mult_m44_n44(mat, tm0, 1);
 	if (_mat){
         // for(int i=0;i<16;i++){
@@ -785,6 +826,9 @@ int getMat(int vcnt,double* vx0, double* vy0, double* vz0,double* vx1, double* v
         // }   
         memcpy(_mat, mat, sizeof(double) * 16);
     } 
+    if(_normalVec){
+        memcpy(_normalVec, initialNormalVec, sizeof(double) * 4);
+    }
 #else
     unit_m44(_mat);
 #endif
@@ -892,7 +936,7 @@ tuple<double,double,int> where_are_rulings_cross_points2d(double A_x,double A_y,
         }
     }else{
         std::cout<<"ruling crossed "<<count<<" borderlines "<<errorCnt<<endl;
-        cout<<A_x<<" "<<A_y<<" "<<B_x<<" "<<B_y<<endl;
+        std::cout<<A_x<<" "<<A_y<<" "<<B_x<<" "<<B_y<<endl;
         exit(1);
     }
 }
@@ -924,7 +968,7 @@ tuple<double,double,int> where_are_rulings_expantion_cross_points2d(double A_x,d
         }
     }else{
         std::cout<<"ruling crossed "<<count<<" borderlines "<<errorCnt<<endl;
-        cout<<A_x<<" "<<A_y<<" "<<B_x<<" "<<B_y<<endl;
+        std::cout<<A_x<<" "<<A_y<<" "<<B_x<<" "<<B_y<<endl;
         exit(1);
     }
 }
@@ -974,34 +1018,86 @@ int collision_triangle3d(double t1p1x,double t1p1y,double t1p1z,double t1p2x,dou
     if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z)==1){
         return 1;
     }
-    if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p1x,t2p1y,t2p1z,t2p3x,t2p3y,t2p3z)){
+    if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p1x,t2p1y,t2p1z,t2p3x,t2p3y,t2p3z)==1){
         return 1;
     }
-    if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p3x,t2p3y,t2p3z,t2p2x,t2p2y,t2p2z)){
+    if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p3x,t2p3y,t2p3z,t2p2x,t2p2y,t2p2z)==1){
         return 1;
     }
-    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z)){
+    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z)==1){
         return 1;
     }
-    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p3x,t1p3y,t1p3z)){
+    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p3x,t1p3y,t1p3z)==1){
         return 1;
     }
-    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p3x,t1p3y,t1p3z,t1p2x,t1p2y,t1p2z)){
+    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p3x,t1p3y,t1p3z,t1p2x,t1p2y,t1p2z)==1){
         return 1;
     }
     return 0;
 }
 
+vector<double> collisionPoint3d(double v0x,double v0y,double v0z,double v1x,double v1y,double v1z,double v2x,double v2y,double v2z,double e0x,double e0y,double e0z,double e1x,double e1y,double e1z){
+    double v0tov1[3]={v1x-v0x,v1y-v0y,v1z-v0z};
+    double v0tov2[3]={v2x-v0x,v2y-v0y,v2z-v0z};
+    double v1tov2[3]={v2x-v1x,v2y-v1y,v2z-v1z};
+    double n[3]={v0tov1[1]*v0tov2[2]-v0tov1[2]*v0tov2[1],v0tov1[2]*v0tov2[0]-v0tov1[0]*v0tov2[2],v0tov1[0]*v0tov2[1]-v0tov1[1]*v0tov2[0]};
+    double t=-(n[0]*(e0x-v0x)+n[1]*(e0y-v0y)+n[2]*(e0z-v0z))/(n[0]*(e1x-e0x)+n[1]*(e1y-e0y)+n[2]*(e1z-e0z));
+    return {e0x+(e1x-e0x)*t,e0y+(e1y-e0y)*t,e0z+(e1z-e0z)*t};
+}
+
+
+void collision_triangle3d_model_and_brace(vector<vector<vector<vector<double>>>>& bracePoints,int braceNumber,double t1p1x,double t1p1y,double t1p1z,double t1p2x,double t1p2y,double t1p2z,double t1p3x,double t1p3y,double t1p3z,double t2p1x,double t2p1y,double t2p1z,double t2p2x,double t2p2y,double t2p2z,double t2p3x,double t2p3y,double t2p3z){
+    if((t1p1x==t2p1x && t1p1y==t2p1y && t1p1z==t2p1z)||(t1p1x==t2p2x && t1p1y==t2p2y && t1p1z==t2p2z)||(t1p1x==t2p3x && t1p1y==t2p3y && t1p1z==t2p3z)){
+        return;
+    }
+    if((t1p2x==t2p1x && t1p2y==t2p1y && t1p2z==t2p1z)||(t1p2x==t2p2x && t1p2y==t2p2y && t1p2z==t2p2z)||(t1p2x==t2p3x && t1p2y==t2p3y && t1p2z==t2p3z)){
+        return;
+    }
+    if((t1p3x==t2p1x && t1p3y==t2p1y && t1p3z==t2p1z)||(t1p3x==t2p2x && t1p3y==t2p2y && t1p3z==t2p2z)||(t1p3x==t2p3x && t1p3y==t2p3y && t1p3z==t2p3z)){
+        return;
+    }
+    vector<vector<double>> oneBracePoints={};
+    if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z)==1){
+        oneBracePoints.push_back(collisionPoint3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z));
+    }
+    if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p1x,t2p1y,t2p1z,t2p3x,t2p3y,t2p3z)==1){
+        oneBracePoints.push_back(collisionPoint3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p1x,t2p1y,t2p1z,t2p3x,t2p3y,t2p3z));
+    }
+    if(collision_triangle_and_line3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p3x,t2p3y,t2p3z,t2p2x,t2p2y,t2p2z)==1){
+        oneBracePoints.push_back(collisionPoint3d(t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z,t1p3x,t1p3y,t1p3z,t2p3x,t2p3y,t2p3z,t2p2x,t2p2y,t2p2z));
+    }
+    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z)==1){
+        oneBracePoints.push_back(collisionPoint3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p2x,t1p2y,t1p2z));
+    }
+    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p3x,t1p3y,t1p3z)==1){
+        oneBracePoints.push_back(collisionPoint3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p1x,t1p1y,t1p1z,t1p3x,t1p3y,t1p3z));
+    }
+    if(collision_triangle_and_line3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p3x,t1p3y,t1p3z,t1p2x,t1p2y,t1p2z)==1){
+        oneBracePoints.push_back(collisionPoint3d(t2p1x,t2p1y,t2p1z,t2p2x,t2p2y,t2p2z,t2p3x,t2p3y,t2p3z,t1p3x,t1p3y,t1p3z,t1p2x,t1p2y,t1p2z));
+    }
+    if(oneBracePoints.size()>0){
+        bracePoints[braceNumber].push_back(oneBracePoints);
+    }
+}
+
 class curvedFoldingModel{
 public:
     int kindOfCrossEdge[2][SAMPLENUM]={0},kindOfCrossEdgeControl[2][NUM]={0},costPointsWhichRuling[9][9][2]={0},check[9][9]={0},cornerRuling[4]={-1,-1,-1,-1},pentagonOrNot[2][2]={},triangleOrNot[2][2]={};
-    double ModelNum[3]={0},dx[SAMPLENUM],betaControl[2][NUM]={0},beta[2][SAMPLENUM]={0},betaVector[4][SAMPLENUM]={0},betaVectorControl[4][NUM]={0},alpha[SAMPLENUM]={0},dalpha[SAMPLENUM]={0},x3d[3][SAMPLENUM]={0},t3d[3][SAMPLENUM]={0},n3d[3][SAMPLENUM]={0},b3d[3][SAMPLENUM]={0},gamma[6][SAMPLENUM]={0},rulingLength[2][SAMPLENUM]={0},rulingLengthControl[2][NUM]={0},borderPoints2d[4][SAMPLENUM]={0},borderPoints2dControl[4][NUM]={0},borderPoints3d[6][SAMPLENUM]={0},tao[SAMPLENUM]={0},k3d[SAMPLENUM]={0},polygonPoints3d[SAMPLENUM][2][4][3]={},costPointsWhere3d[9][9][3]={0},curveCrossPoints3d[2][3]={0},cornerPoints2d[4][3]={0},cornerPoints3d[4][3]={0},cost=10000;
-    
+    double ModelNum[3]={0},dx[SAMPLENUM],betaControl[2][NUM]={0},beta[2][SAMPLENUM]={0},betaVector[4][SAMPLENUM]={0},betaVectorControl[4][NUM]={0},alpha[SAMPLENUM]={0},dalpha[SAMPLENUM]={0},x3d[3][SAMPLENUM]={0},t3d[3][SAMPLENUM]={0},n3d[3][SAMPLENUM]={0},b3d[3][SAMPLENUM]={0},gamma[6][SAMPLENUM]={0},rulingLength[2][SAMPLENUM]={0},rulingLengthControl[2][NUM]={0},borderPoints2d[4][SAMPLENUM]={0},borderPoints2dControl[4][NUM]={0},borderPoints3d[6][SAMPLENUM]={0},tao[SAMPLENUM]={0},k3d[SAMPLENUM]={0},polygonPoints3d[SAMPLENUM][2][4][3]={},costPointsWhere3d[9][9][3]={0},curveCrossPoints3d[2][3]={0},cornerPoints2d[4][3]={0},cornerPoints3d[4][3]={0},cost=10000,
+    normalVectorOfBase[3]={0,0,0},
+    baseCornerPoints3d[4]{};
+    double baseVector1[3];
+    double baseVector2[3];
+    double basePoints[4][3];
+    vector<vector<vector<double>>> bracePointsUnCut;
+    vector<vector<vector<vector<double>>>> bracePoints;
+
     void name(int a,int b,double c){
         this->ModelNum[0]=a;
         this->ModelNum[1]=b;
         this->ModelNum[2]=c;
     }
+
 
     int check_ruling_cross2d(){
         int cross_countL=0,cross_countR=0;
@@ -1240,17 +1336,17 @@ public:
 
         }
         std::cout<<endl;    
-        for (int i = 0; i < 9; i++)
-        {
-            for (int j = 0; j < 9; j++)
-            {
-                Float=costPointsWhere2d[i][j][0];
-                std::cout<<Float<<" ";
-                Float=costPointsWhere2d[i][j][1];
-                std::cout<<Float<<" ";
-                std::cout<<endl;    
-            }
-        }
+        // for (int i = 0; i < 9; i++)
+        // {
+        //     for (int j = 0; j < 9; j++)
+        //     {
+        //         Float=costPointsWhere2d[i][j][0];
+        //         std::cout<<Float<<" ";
+        //         Float=costPointsWhere2d[i][j][1];
+        //         std::cout<<Float<<" ";
+        //         std::cout<<endl;    
+        //     }
+        // }
     }
     void where_are_corner_points3d(){
         double curveCrossPointToCorner=0,A=0,B=0;
@@ -2025,7 +2121,7 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
             std::cout<<"start and end are on the same edge"<<endl;
             exit(1);
         }
-        this->between_which_ruling_are_cost_points();
+        // this->between_which_ruling_are_cost_points();
 
         for (int i = 3; i < SAMPLENUM-3; i++){
             this->gamma[0][i]=cos(this->beta[0][i])*this->t3d[0][i]+sin(this->beta[0][i])*cos(this->alpha[i])*this->n3d[0][i]+sin(this->beta[0][i])*sin(this->alpha[i])*this->b3d[0][i];
@@ -2057,14 +2153,15 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
             // std::cout<<"self collision "<<self_col<<endl;
             return -3;
         }
-        this->where_are_cost_points3d();
+        // this->where_are_cost_points3d();
         return 1; //from TA
     }
 
     void where_are_polygonPoints3d(){
+        int cnt=0;
         for(int i=2;i<=SAMPLENUM-4;i++){
             for(int j=0;j<2;j++){
-                double v2d[3][4]={},v3d[3][4]={},mat[16]={},tmp[3][4]={};
+                double v2d[3][4]={},v3d[3][4]={},mat[16]={},tmp[3][4]={},n[4]={};
                 if(i==2){
                     for(int k=0;k<2;k++){
                         tmp[k][0]=v2d[k][0]=curveCrossPoints2d[0][k];
@@ -2076,7 +2173,7 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
                         v3d[k][1]=x3d[k][3];
                         v3d[k][2]=borderPoints3d[j*3+k][3];
                     }
-                    getMat(3,v2d[0],v2d[1],v2d[2],v3d[0],v3d[1],v3d[2],mat);
+                    getMat(3,v2d[0],v2d[1],v2d[2],v3d[0],v3d[1],v3d[2],mat,n);
                     for(int k=0;k<3;k++){
                         for(int l=0;l<3;l++){
                             polygonPoints3d[i][j][k][l]=mat[l*4+0]*tmp[0][k]+mat[l*4+1]*tmp[1][k]+mat[l*4+3];
@@ -2093,7 +2190,7 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
                         v3d[k][1]=x3d[k][SAMPLENUM-4];
                         v3d[k][2]=borderPoints3d[j*3+k][SAMPLENUM-4];
                     }
-                    getMat(3,v2d[0],v2d[1],v2d[2],v3d[0],v3d[1],v3d[2],mat);
+                    getMat(3,v2d[0],v2d[1],v2d[2],v3d[0],v3d[1],v3d[2],mat,n);
                     for(int k=0;k<3;k++){
                         for(int l=0;l<3;l++){
                             polygonPoints3d[i][j][k][l]=mat[l*4+0]*tmp[0][k]+mat[l*4+1]*tmp[1][k]+mat[l*4+3];
@@ -2112,18 +2209,210 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
                         v3d[k][2]=borderPoints3d[j*3+k][i+1];
                         v3d[k][3]=borderPoints3d[j*3+k][i];
                     }
-                    getMat(4,v2d[0],v2d[1],v2d[2],v3d[0],v3d[1],v3d[2],mat);
+                    getMat(4,v2d[0],v2d[1],v2d[2],v3d[0],v3d[1],v3d[2],mat,n);
                     for(int k=0;k<4;k++){
                         for(int l=0;l<3;l++){
                             polygonPoints3d[i][j][k][l]=mat[l*4+0]*tmp[0][k]+mat[l*4+1]*tmp[1][k]+mat[l*4+3];
                         }
                     }
                 }
-                
+                // if(j==0){
+                //     cnt++;
+                //     normalVectorOfBase[0]+=n[0];
+                //     normalVectorOfBase[1]+=n[1];
+                //     normalVectorOfBase[2]+=n[2];
+                // }
+            }
+        }
+        // double norm=sqrt(normalVectorOfBase[0]*normalVectorOfBase[0]+normalVectorOfBase[1]*normalVectorOfBase[1]+normalVectorOfBase[2]*normalVectorOfBase[2]);
+        // normalVectorOfBase[0]/=-norm;
+        // normalVectorOfBase[1]/=-norm;
+        // normalVectorOfBase[2]/=-norm;
+    }
+
+    void where_are_bracePoints3d(){
+        for(int i=2;i<=SAMPLENUM-4;i++){
+            normalVectorOfBase[0]+=b3d[0][i];
+            normalVectorOfBase[1]+=b3d[1][i];
+            normalVectorOfBase[2]+=b3d[2][i];
+        }
+        
+
+        double normOfBase=sqrt(normalVectorOfBase[0]*normalVectorOfBase[0]+normalVectorOfBase[1]*normalVectorOfBase[1]+normalVectorOfBase[2]*normalVectorOfBase[2]);
+        normalVectorOfBase[0]/=-normOfBase;
+        normalVectorOfBase[1]/=-normOfBase;
+        normalVectorOfBase[2]/=-normOfBase;
+
+        double pointInBase[3]={},borderVector[3]={};
+        pointInBase[0]=x3d[0][(int)(SAMPLENUM/2)]+normalVectorOfBase[0]*20;
+        pointInBase[1]=x3d[1][(int)(SAMPLENUM/2)]+normalVectorOfBase[1]*20;
+        pointInBase[2]=x3d[2][(int)(SAMPLENUM/2)]+normalVectorOfBase[2]*20;
+        borderVector[0]=cornerPoints3d[0][0]-curveCrossPoints3d[0][0];
+        borderVector[1]=cornerPoints3d[0][1]-curveCrossPoints3d[0][1];
+        borderVector[2]=cornerPoints3d[0][2]-curveCrossPoints3d[0][2];
+        double cross=normalVectorOfBase[0]*borderVector[0]+normalVectorOfBase[1]*borderVector[1]+normalVectorOfBase[2]*borderVector[2];
+        baseVector1[0]=borderVector[0]-cross*normalVectorOfBase[0];
+        baseVector1[1]=borderVector[1]-cross*normalVectorOfBase[1];
+        baseVector1[2]=borderVector[2]-cross*normalVectorOfBase[2];
+        double norm=sqrt(baseVector1[0]*baseVector1[0]+baseVector1[1]*baseVector1[1]+baseVector1[2]*baseVector1[2]);
+        baseVector1[0]/=norm;
+        baseVector1[1]/=norm;
+        baseVector1[2]/=norm;
+        
+        baseVector2[0]=normalVectorOfBase[1]*baseVector1[2]-normalVectorOfBase[2]*baseVector1[1];
+        baseVector2[1]=normalVectorOfBase[2]*baseVector1[0]-normalVectorOfBase[0]*baseVector1[2];
+        baseVector2[2]=normalVectorOfBase[0]*baseVector1[1]-normalVectorOfBase[1]*baseVector1[0];
+
+        int left=100,top=80;
+        basePoints[0][0]=pointInBase[0]-top*baseVector1[0]-left*baseVector2[0];
+        basePoints[0][1]=pointInBase[1]-top*baseVector1[1]-left*baseVector2[1];
+        basePoints[0][2]=pointInBase[2]-top*baseVector1[2]-left*baseVector2[2];
+
+        basePoints[1][0]=pointInBase[0]-top*baseVector1[0]+(-left+SIZE_OF_BASE)*baseVector2[0];
+        basePoints[1][1]=pointInBase[1]-top*baseVector1[1]+(-left+SIZE_OF_BASE)*baseVector2[1];
+        basePoints[1][2]=pointInBase[2]-top*baseVector1[2]+(-left+SIZE_OF_BASE)*baseVector2[2];
+
+        basePoints[2][0]=pointInBase[0]+(-top+SIZE_OF_BASE)*baseVector1[0]+(-left+SIZE_OF_BASE)*baseVector2[0];
+        basePoints[2][1]=pointInBase[1]+(-top+SIZE_OF_BASE)*baseVector1[1]+(-left+SIZE_OF_BASE)*baseVector2[1];
+        basePoints[2][2]=pointInBase[2]+(-top+SIZE_OF_BASE)*baseVector1[2]+(-left+SIZE_OF_BASE)*baseVector2[2];
+
+        basePoints[3][0]=pointInBase[0]+(-top+SIZE_OF_BASE)*baseVector1[0]-left*baseVector2[0];
+        basePoints[3][1]=pointInBase[1]+(-top+SIZE_OF_BASE)*baseVector1[1]-left*baseVector2[1];
+        basePoints[3][2]=pointInBase[2]+(-top+SIZE_OF_BASE)*baseVector1[2]-left*baseVector2[2];
+        
+        double blankBetweenBraces=(int)(SIZE_OF_BASE/(NUMBER_OF_BRACES-1));
+        for(int i=0;i<NUMBER_OF_BRACES;i++){
+            this->bracePoints.push_back({});
+            vector<vector<double>> tmpBracePoints(4,vector<double>(3));
+            for(int j=0;j<3;j++){
+                tmpBracePoints[0][j]=basePoints[0][j]+i*blankBetweenBraces*baseVector1[j];
+                tmpBracePoints[1][j]=basePoints[1][j]+i*blankBetweenBraces*baseVector1[j];
+                tmpBracePoints[2][j]=basePoints[1][j]+i*blankBetweenBraces*baseVector1[j]-SIZE_OF_BASE*normalVectorOfBase[j];
+                tmpBracePoints[3][j]=basePoints[0][j]+i*blankBetweenBraces*baseVector1[j]-SIZE_OF_BASE*normalVectorOfBase[j];
+            }
+            bracePointsUnCut.push_back(tmpBracePoints);/////
+
+            for(int k=0;k<2;k++){
+                collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[2][k][0][0],polygonPoints3d[2][k][0][1],polygonPoints3d[2][k][0][2]
+                    ,polygonPoints3d[2][k][1][0],polygonPoints3d[2][k][1][1],polygonPoints3d[2][k][1][2]
+                    ,polygonPoints3d[2][k][2][0],polygonPoints3d[2][k][2][1],polygonPoints3d[2][k][2][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[1][0],tmpBracePoints[1][1],tmpBracePoints[1][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                );
+                collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[2][k][0][0],polygonPoints3d[2][k][0][1],polygonPoints3d[2][k][0][2]
+                    ,polygonPoints3d[2][k][1][0],polygonPoints3d[2][k][1][1],polygonPoints3d[2][k][1][2]
+                    ,polygonPoints3d[2][k][2][0],polygonPoints3d[2][k][2][1],polygonPoints3d[2][k][2][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                    ,tmpBracePoints[3][0],tmpBracePoints[3][1],tmpBracePoints[3][2]
+                );
+            }
+            for(int j=3;j<SAMPLENUM-4;j++){
+                for(int k=0;k<2;k++){
+                    collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[j][k][0][0],polygonPoints3d[j][k][0][1],polygonPoints3d[j][k][0][2]
+                    ,polygonPoints3d[j][k][1][0],polygonPoints3d[j][k][1][1],polygonPoints3d[j][k][1][2]
+                    ,polygonPoints3d[j][k][2][0],polygonPoints3d[j][k][2][1],polygonPoints3d[j][k][2][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[1][0],tmpBracePoints[1][1],tmpBracePoints[1][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                    );
+                    collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[j][k][0][0],polygonPoints3d[j][k][0][1],polygonPoints3d[j][k][0][2]
+                    ,polygonPoints3d[j][k][1][0],polygonPoints3d[j][k][1][1],polygonPoints3d[j][k][1][2]
+                    ,polygonPoints3d[j][k][2][0],polygonPoints3d[j][k][2][1],polygonPoints3d[j][k][2][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                    ,tmpBracePoints[3][0],tmpBracePoints[3][1],tmpBracePoints[3][2]
+                    );
+                    collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[j][k][0][0],polygonPoints3d[j][k][0][1],polygonPoints3d[j][k][0][2]
+                    ,polygonPoints3d[j][k][2][0],polygonPoints3d[j][k][2][1],polygonPoints3d[j][k][2][2]
+                    ,polygonPoints3d[j][k][3][0],polygonPoints3d[j][k][3][1],polygonPoints3d[j][k][3][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[1][0],tmpBracePoints[1][1],tmpBracePoints[1][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                    );
+                    collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[j][k][0][0],polygonPoints3d[j][k][0][1],polygonPoints3d[j][k][0][2]
+                    ,polygonPoints3d[j][k][2][0],polygonPoints3d[j][k][2][1],polygonPoints3d[j][k][2][2]
+                    ,polygonPoints3d[j][k][3][0],polygonPoints3d[j][k][3][1],polygonPoints3d[j][k][3][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                    ,tmpBracePoints[3][0],tmpBracePoints[3][1],tmpBracePoints[3][2]
+                    );
+                    
+                }
+            }
+            for(int k=0;k<2;k++){
+                collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[SAMPLENUM-4][k][0][0],polygonPoints3d[SAMPLENUM-4][k][0][1],polygonPoints3d[SAMPLENUM-4][k][0][2]
+                    ,polygonPoints3d[SAMPLENUM-4][k][1][0],polygonPoints3d[SAMPLENUM-4][k][1][1],polygonPoints3d[SAMPLENUM-4][k][1][2]
+                    ,polygonPoints3d[SAMPLENUM-4][k][2][0],polygonPoints3d[SAMPLENUM-4][k][2][1],polygonPoints3d[SAMPLENUM-4][k][2][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[1][0],tmpBracePoints[1][1],tmpBracePoints[1][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                );
+                collision_triangle3d_model_and_brace(bracePoints,i
+                    ,polygonPoints3d[SAMPLENUM-4][k][0][0],polygonPoints3d[SAMPLENUM-4][k][0][1],polygonPoints3d[SAMPLENUM-4][k][0][2]
+                    ,polygonPoints3d[SAMPLENUM-4][k][1][0],polygonPoints3d[SAMPLENUM-4][k][1][1],polygonPoints3d[SAMPLENUM-4][k][1][2]
+                    ,polygonPoints3d[SAMPLENUM-4][k][2][0],polygonPoints3d[SAMPLENUM-4][k][2][1],polygonPoints3d[SAMPLENUM-4][k][2][2]
+                    ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                    ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                    ,tmpBracePoints[3][0],tmpBracePoints[3][1],tmpBracePoints[3][2]
+                );
+                // if(i==13&&bracePoints[i].size()==73)cout<<"LorR"<<k;
+            }
+            for (int k = 0; k < 2; k++){//now
+                for (int j = 0; j < 2; j++){
+                    if(fabs(this->kindOfCrossEdge[j][startToEnd[k]]-curveCrossPoints2d[k][2])==1||fabs(int(this->kindOfCrossEdge[j][startToEnd[k]])%4-int(curveCrossPoints2d[k][2])%4)==1){
+                        collision_triangle3d_model_and_brace(bracePoints,i
+                            ,polygonPoints3d[2+(SAMPLENUM-6)*k][j][0][0],polygonPoints3d[2+(SAMPLENUM-6)*k][j][0][1],polygonPoints3d[2+(SAMPLENUM-6)*k][j][0][2]
+                            ,polygonPoints3d[2+(SAMPLENUM-6)*k][j][2][0],polygonPoints3d[2+(SAMPLENUM-6)*k][j][2][1],polygonPoints3d[2+(SAMPLENUM-6)*k][j][2][2]
+                            ,cornerPoints3d[k*2+j][0],cornerPoints3d[k*2+j][1],cornerPoints3d[k*2+j][2]
+                            ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                            ,tmpBracePoints[1][0],tmpBracePoints[1][1],tmpBracePoints[1][2]
+                            ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                        );
+                        collision_triangle3d_model_and_brace(bracePoints,i
+                            ,polygonPoints3d[2+(SAMPLENUM-6)*k][j][0][0],polygonPoints3d[2+(SAMPLENUM-6)*k][j][0][1],polygonPoints3d[2+(SAMPLENUM-6)*k][j][0][2]
+                            ,polygonPoints3d[2+(SAMPLENUM-6)*k][j][2][0],polygonPoints3d[2+(SAMPLENUM-6)*k][j][2][1],polygonPoints3d[2+(SAMPLENUM-6)*k][j][2][2]
+                            ,cornerPoints3d[k*2+j][0],cornerPoints3d[k*2+j][1],cornerPoints3d[k*2+j][2]
+                            ,tmpBracePoints[0][0],tmpBracePoints[0][1],tmpBracePoints[0][2]
+                            ,tmpBracePoints[2][0],tmpBracePoints[2][1],tmpBracePoints[2][2]
+                            ,tmpBracePoints[3][0],tmpBracePoints[3][1],tmpBracePoints[3][2]
+                        );
+                    }else if(this->kindOfCrossEdge[j][startToEnd[k]]==curveCrossPoints2d[k][2]){
+                        if(pentagonOrNot[1-k][j]!=1){
+                            
+                        }
+                    }else{
+                        
+                    }
+                }
+            }
+            for(int j=0;j<bracePoints[i].size();j++){
+                int two=bracePoints[i][j].size();
+                for(int k=0;k<two;k++){
+                    double tmp[3]={};
+                    tmp[0]=bracePoints[i][j][k][0]+normalVectorOfBase[0]*200;
+                    tmp[1]=bracePoints[i][j][k][1]+normalVectorOfBase[1]*200;
+                    tmp[2]=bracePoints[i][j][k][2]+normalVectorOfBase[2]*200;
+
+                    bracePoints[i][j].push_back(collisionPoint3d(
+                        basePoints[0][0],basePoints[0][1],basePoints[0][2],
+                        basePoints[1][0],basePoints[1][1],basePoints[1][2],
+                        basePoints[2][0],basePoints[2][1],basePoints[2][2],
+                        bracePoints[i][j][k][0],bracePoints[i][j][k][1],bracePoints[i][j][k][2],
+                        tmp[0],tmp[1],tmp[2]
+                    ));
+                }
             }
         }
     }
-
     int calculate_3d(double majorAlpha){
         int m=SAMPLENUM/2,flg=0;
         double datana[SAMPLENUM], ttana[SAMPLENUM], alpha_[SAMPLENUM], da_[SAMPLENUM], tr_[SAMPLENUM];
@@ -2488,7 +2777,7 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
             std::cout<<"start and end are on the same edge"<<endl;
             exit(1);
         }
-        this->between_which_ruling_are_cost_points();
+        // this->between_which_ruling_are_cost_points();
 
         for (int i = 3; i < SAMPLENUM-3; i++){
             this->gamma[0][i]=cos(this->beta[0][i])*this->t3d[0][i]+sin(this->beta[0][i])*cos(this->alpha[i])*this->n3d[0][i]+sin(this->beta[0][i])*sin(this->alpha[i])*this->b3d[0][i];
@@ -2514,13 +2803,14 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
         this->where_are_rulings_cross_points3d();
         this->where_are_polygonPoints3d();
         this->where_are_corner_points3d();
+        this->where_are_bracePoints3d();
         int self_col=this->check_self_collision();
         if(self_col>0){
             // std::cout<<this->ModelNum[0]<<" "<<this->ModelNum[1]<<" "<<this->ModelNum[2]<<endl;
             // std::cout<<"self collision "<<self_col<<endl;
             return -3;
         }
-        this->where_are_cost_points3d();
+        // this->where_are_cost_points3d();
         return 1; // from Beta
     }
     
@@ -2583,15 +2873,15 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
             }
             std::cout<<endl;
         }
-        for (int i = 0; i < 9; i++){
-            for (int j = 0; j < 9; j++){
-                for (int k = 0; k < 3; k++){
-                    Float=this->costPointsWhere3d[i][j][k];
-                    std::cout<<Float<<" ";
-                }
-                std::cout<<endl;
-            }
-        }
+        // for (int i = 0; i < 9; i++){
+        //     for (int j = 0; j < 9; j++){
+        //         for (int k = 0; k < 3; k++){
+        //             Float=this->costPointsWhere3d[i][j][k];
+        //             std::cout<<Float<<" ";
+        //         }
+        //         std::cout<<endl;
+        //     }
+        // }
         for(int i = 0; i < 4; i++){
             std::cout<<this->cornerRuling[i]<<" ";
         }
@@ -2601,6 +2891,48 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
                 std::cout<<this->pentagonOrNot[i][j]<<" ";
             }
             std::cout<<endl;
+        }
+        for(int i = 0; i < 3; i++){
+            std::cout<<this->normalVectorOfBase[i]<<" ";
+        }
+        std::cout<<endl;
+
+        for(int i = 0; i < 3; i++){
+            std::cout<<this->baseVector1[i]<<" ";
+        }
+        std::cout<<endl;
+
+        for(int i = 0; i < 3; i++){
+            std::cout<<this->baseVector2[i]<<" ";
+        }
+        std::cout<<endl;
+        for(int i = 0; i < 4; i++){
+            for(int j = 0; j < 3; j++){
+                std::cout<<this->basePoints[i][j]<<" ";
+            }
+            std::cout<<endl;
+        }
+
+        for(int i = 0; i < NUMBER_OF_BRACES; i++){
+            for(int j = 0; j < 4; j++){
+                for(int k = 0; k < 3; k++){
+                    std::cout<<this->bracePointsUnCut[i][j][k]<<" ";
+                }
+                std::cout<<endl;
+            }
+        }
+        std::cout<<bracePoints.size()<<endl;            
+        for(int i = 0; i < bracePoints.size(); i++){
+            std::cout<<bracePoints[i].size()<<endl;            
+            for(int j = 0; j < bracePoints[i].size(); j++){
+                for(int k = 0; k < 4; k++){
+                    for(int l = 0; l < 3; l++){
+                        std::cout<<this->bracePoints[i][j][k][l]<<" ";
+                    }
+                    std::cout<<endl;
+                }
+                
+            }
         }
     }
 
@@ -2944,7 +3276,7 @@ int calculate_3d(double alphaControl[NUM],double taoControl[NUM]){
 
 };
 double calculate_cost(curvedFoldingModel model1,curvedFoldingModel model2){
-    double costSum=0,mat[16]={},v1x[81],v1y[81],v1z[81],v2x[81],v2y[81],v2z[81],tmp[3]={};
+    double costSum=0,mat[16]={},v1x[81],v1y[81],v1z[81],v2x[81],v2y[81],v2z[81],tmp[3]={},n[3]={};
     for (int i = 0; i < 9; i++){
         for (int j = 0; j < 9; j++){
             v1x[i*9+j]=model1.costPointsWhere3d[i][j][0];
@@ -2955,7 +3287,7 @@ double calculate_cost(curvedFoldingModel model1,curvedFoldingModel model2){
             v2z[i*9+j]=model2.costPointsWhere3d[i][j][2];
         }
     }
-    getMat(81,v1x,v1y,v1z,v2x,v2y,v2z,mat);
+    getMat(81,v1x,v1y,v1z,v2x,v2y,v2z,mat,n);
     for (int i = 0; i < 9; i++){
         for (int j = 0; j < 9; j++){
             for(int k=0;k<3;k++){
@@ -3163,12 +3495,12 @@ int main(int argc, char const *argv[]){
         exit(1);
     }
     
-    for (int i = 0; i < 9; i++){
-        for (int j = 0; j < 9; j++){
-            costPointsWhere2d[i][j][0]=20*(j+1);
-            costPointsWhere2d[i][j][1]=100-20*(i+1);
-        }
-    }
+    // for (int i = 0; i < 9; i++){
+    //     for (int j = 0; j < 9; j++){
+    //         costPointsWhere2d[i][j][0]=20*(j+1);
+    //         costPointsWhere2d[i][j][1]=100-20*(i+1);
+    //     }
+    // }
     
     spline(k2d,k2dControl);
     x2d[0][0]=10.156250;
@@ -3279,8 +3611,7 @@ int main(int argc, char const *argv[]){
     curveTipToEdge[1]=distance2d(x2d[0][SAMPLENUM-4],x2d[1][SAMPLENUM-4],curveCrossPoints2d[1][0],curveCrossPoints2d[1][1]);
 
     int ok[6]={},startModelNumber=STARTNUM,goalModelNumber=GOALNUM;
-    //model2 いじった
-    double alphalimit[100]={0,60,10,10,50,40,40,50,50,30,30,58.4681,66.8785,62.9176,76.0825,71.331};
+    double alphalimit[100]={0,60,40,10,50,40,40,50,50,30,30,58.4681,66.8785,62.9176,76.0825,71.331};
     double startAlpha=alphalimit[startModelNumber],goalAlpha=alphalimit[goalModelNumber];
     if(ALPHANUMBER==1){
         alphaDisplacement[0]=goalAlpha;
@@ -3344,16 +3675,36 @@ int main(int argc, char const *argv[]){
     //     dbeta+=fabs(startModel->betaControl[1][i]-goalModel->betaControl[1][i]);
     // }
     // cout<<dbeta<<endl;
+    std::cout<<ALPHANUMBER<<endl;
+    std::cout<<RULINGDISPLACEMENTNUMBER<<endl;
+    std::cout<<NUMBER_OF_BRACES<<endl;
+    //yeah
+    startModel->draw_2d();
+    startModel->draw_3d();
 
-    // startModel->draw_2d();
+
+    // for(int i=0;i<startModel->bracePoints.size();i++){
+    //     for(int j=0;j<startModel->bracePoints[i].size();j++){
+    //         for(int k=0;k<2;k++){
+    //             for(int l=0;l<3;l++){
+    //                 cout<<startModel->bracePoints[i][j][k][l]<<" ";
+    //             }
+    //             cout<<endl;
+
+    //         }
+    //     }
+    // }
+
+    // cout<<startModel->bracePoints.size()<<endl;
+
+    // startModel->calculate_2d(startModelBetaControl);
     // goalModel->draw_2d();
     // startModel->calculate_2d(startModelBetaControl);
+    // startModel->calculate_3d(startAlpha);
     // startModel->calculate_3d(20);
     // goalModel->calculate_2d(startModelBetaControl);
     // goalModel->calculate_3d(10);
-    // cout<<ALPHANUMBER<<endl;
-    // cout<<RULINGDISPLACEMENTNUMBER<<endl;
-    // startModel->draw_3d();
+
     // for(int i=0;i<9;i++){
     //     for(int j=0;j<9;j++){
     //         float Float=0;
@@ -3368,7 +3719,7 @@ int main(int argc, char const *argv[]){
     // cout<<calculate_cost(*startModel,*goalModel);
     // cout<<calculate_CostC(*startModel,*goalModel)<<endl;
     // cout<<startModel->calculate_costA()<<endl;
-#if 1
+#if 0
     double minus1=0,minus2=0,minus3=1;
     curvedFoldingModel* copyModel=new curvedFoldingModel;
     vector<vector<curvedFoldingModel>> models(RULINGDISPLACEMENTNUMBER*RULINGDISPLACEMENTNUMBER,vector<curvedFoldingModel>(ALPHANUMBER));
